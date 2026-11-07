@@ -95,7 +95,7 @@ This suite performs **no installs**. It verifies boot, IPC, registry loading, ro
 
 [`tests/e2e/packaged.spec.ts`](../tests/e2e/packaged.spec.ts):
 
-- Uses the newest of `dist/win-unpacked/DevForge.exe` and `dist-build/win-unpacked/DevForge.exe`; set `DEVFORGE_PACKAGED_EXE` to test a specific build.
+- Uses the newest of `dist/win-unpacked/DevForge.exe`, `dist-build/win-unpacked/DevForge.exe` and `dist-release/win-unpacked/DevForge.exe`; set `DEVFORGE_PACKAGED_EXE` to test a specific build.
 - Skips with a clear message when the unpacked build is absent.
 - Launches the executable with a temporary user-data directory, waits for the dashboard, then opens Discover Software and asserts the unified search field, its placeholder, and the absence of Local/Online tabs.
 - This catches packaging mistakes that do not appear in the development build: missing `extraResources` (including `identities.json`), wrong renderer path, preload path issues and asar problems.

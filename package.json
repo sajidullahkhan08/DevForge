@@ -31,8 +31,8 @@
     "audit:prod": "npm audit --omit=dev --audit-level=high",
     "sbom": "node scripts/generate-sbom.mjs",
     "verify": "npm run typecheck && npm test && npm run build",
-    "package": "npm run build && electron-builder --win --x64",
-    "package:dir": "npm run build && electron-builder --win --x64 --dir",
+    "package": "npm run build && electron-builder --win --x64 --publish never",
+    "package:dir": "npm run build && electron-builder --win --x64 --dir --publish never",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {

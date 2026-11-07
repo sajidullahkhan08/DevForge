@@ -6,7 +6,8 @@ import { test, expect, _electron as electron } from '@playwright/test'
 const root = resolve(__dirname, '..', '..')
 const candidates = [
   resolve(root, 'dist', 'win-unpacked', 'DevForge.exe'),
-  resolve(root, 'dist-build', 'win-unpacked', 'DevForge.exe')
+  resolve(root, 'dist-build', 'win-unpacked', 'DevForge.exe'),
+  resolve(root, 'dist-release', 'win-unpacked', 'DevForge.exe')
 ]
   .filter((candidate) => existsSync(candidate))
   .sort((a, b) => statSync(b).mtimeMs - statSync(a).mtimeMs)
