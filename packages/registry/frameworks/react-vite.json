@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "react-vite",
+  "name": "React + Vite",
+  "category": "framework",
+  "description": "Project-level React frontend scaffold powered by Vite and TypeScript.",
+  "longDescription": "React is a UI library and Vite is its build tool. They belong in each project's node_modules, not on the operating system. DevForge treats this as a project recipe: it ensures Node.js is installed and provides the official Vite scaffold commands.",
+  "publisher": "Meta / Vite team",
+  "homepage": "https://react.dev/",
+  "documentationUrl": "https://vite.dev/guide/",
+  "license": "MIT",
+  "icon": "react",
+  "installationMethod": "project-recipe",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "React and Vite are installed per project into node_modules, not globally.",
+    "DevForge does not create project files; it provides the official scaffold commands."
+  ],
+  "tags": ["javascript", "typescript", "react", "vite", "frontend"],
+  "versions": [],
+  "dependencies": [
+    {
+      "packageId": "nodejs",
+      "kind": "required",
+      "minVersion": "20",
+      "reason": "Vite requires a modern Node.js runtime."
+    }
+  ],
+  "environment": [],
+  "verification": [],
+  "detection": {
+    "knownPaths": []
+  },
+  "projectRecipe": {
+    "summary": "Scaffold a React + TypeScript application with Vite inside your project folder.",
+    "commands": [
+      {
+        "label": "Create the project",
+        "command": "npm create vite@latest my-app -- --template react-ts"
+      },
+      {
+        "label": "Install dependencies",
+        "command": "cd my-app; npm install"
+      },
+      {
+        "label": "Start the development server",
+        "command": "npm run dev"
+      },
+      {
+        "label": "Create a production build",
+        "command": "npm run build"
+      }
+    ],
+    "notes": ["These commands create a new folder named my-app in the current directory."]
+  }
+}

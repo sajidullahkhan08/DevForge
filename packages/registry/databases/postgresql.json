@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "postgresql",
+  "name": "PostgreSQL",
+  "category": "database",
+  "description": "Advanced open-source relational database server with strong SQL standards support.",
+  "longDescription": "PostgreSQL is a powerful relational database server. DevForge installs the official EDB build through WinGet as a Windows service. Database credentials are not created or stored by DevForge: you must secure the postgres account immediately after installation and configure your own application roles.",
+  "publisher": "PostgreSQL Global Development Group",
+  "homepage": "https://www.postgresql.org/",
+  "documentationUrl": "https://www.postgresql.org/docs/",
+  "license": "PostgreSQL License",
+  "icon": "postgresql",
+  "installationMethod": "winget",
+  "packageManagerId": "PostgreSQL.PostgreSQL.17",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": true,
+  "caveats": [
+    "This is a database server. Installation and service configuration require administrator permission.",
+    "DevForge does not create, store or log database passwords. Secure the postgres superuser account immediately after installation.",
+    "If the EDB unattended installer requires a superuser password, the installation may fail without it. Check the transaction log for details; DevForge will never invent credentials.",
+    "Uninstalling does not delete your database data directory. Back up your databases before removing the server.",
+    "The service is configured by the vendor installer. DevForge verifies that the service exists and is running."
+  ],
+  "tags": ["database", "sql", "postgres", "relational"],
+  "versions": [
+    {
+      "version": "17.11-5",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "PostgreSQL.PostgreSQL.17",
+      "estimatedSizeBytes": 380000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    {
+      "kind": "path",
+      "name": "PATH",
+      "valueTemplate": "{programFiles}\\PostgreSQL\\17\\bin",
+      "scope": "user"
+    }
+  ],
+  "verification": [
+    {
+      "id": "postgres-service",
+      "label": "PostgreSQL service",
+      "kind": "service",
+      "serviceNamePattern": "postgresql-x64",
+      "expectPattern": "Running",
+      "optional": false
+    },
+    {
+      "id": "psql-version",
+      "label": "psql client",
+      "kind": "command",
+      "command": "psql",
+      "args": ["--version"],
+      "expectPattern": "psql",
+      "versionPattern": "psql \\(PostgreSQL\\)\\s+([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "psql",
+    "args": ["--version"],
+    "versionPattern": "psql \\(PostgreSQL\\)\\s+([\\d.]+)",
+    "displayNamePattern": "PostgreSQL 17",
+    "serviceNamePattern": "postgresql-x64",
+    "knownPaths": ["{programFiles}\\PostgreSQL\\17\\bin"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

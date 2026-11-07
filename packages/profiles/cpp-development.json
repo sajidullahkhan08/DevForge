@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "cpp-development",
+  "name": "C/C++ Development",
+  "description": "GCC (MinGW-w64), CMake and Git for native Windows C and C++ development.",
+  "audience": "C and C++ developers using GCC",
+  "icon": "gnu",
+  "notes": [
+    "This profile uses the GCC-based MinGW-w64 toolchain, not Microsoft's MSVC compiler.",
+    "MSVC is provided by Visual Studio Build Tools and can coexist with MinGW-w64."
+  ],
+  "components": [
+    { "packageId": "mingw-w64", "optional": false },
+    { "packageId": "cmake", "optional": false },
+    { "packageId": "git", "optional": false }
+  ]
+}

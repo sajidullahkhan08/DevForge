@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "mongodb",
+  "name": "MongoDB Community Server",
+  "category": "database",
+  "description": "Advanced document database server with flexible JSON-like documents.",
+  "longDescription": "MongoDB is a document-oriented database. DevForge installs MongoDB Community Server through WinGet and verifies the Windows service and mongod binary. MongoDB starts without authentication for local development; enabling authentication requires you to create admin users yourself.",
+  "publisher": "MongoDB Inc.",
+  "homepage": "https://www.mongodb.com/",
+  "documentationUrl": "https://www.mongodb.com/docs/",
+  "license": "SSPL-1.0",
+  "icon": "mongodb",
+  "installationMethod": "winget",
+  "packageManagerId": "MongoDB.Server",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": true,
+  "caveats": [
+    "MongoDB starts without authentication by default. For anything beyond local development, enable authentication and create dedicated admin users.",
+    "DevForge does not create, store or log database credentials.",
+    "Uninstalling does not delete your data files. Back up your databases before removing the server.",
+    "The MSI installs for all users and Windows will request administrator permission."
+  ],
+  "tags": ["database", "nosql", "document", "mongodb"],
+  "versions": [
+    {
+      "version": "9.0.4",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "MongoDB.Server",
+      "estimatedSizeBytes": 380000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    {
+      "kind": "path",
+      "name": "PATH",
+      "valueTemplate": "{programFiles}\\MongoDB\\Server\\9.0\\bin",
+      "scope": "user"
+    }
+  ],
+  "verification": [
+    {
+      "id": "mongodb-service",
+      "label": "MongoDB service",
+      "kind": "service",
+      "serviceNamePattern": "MongoDB",
+      "expectPattern": "Running",
+      "optional": false
+    },
+    {
+      "id": "mongod-version",
+      "label": "mongod server binary",
+      "kind": "command",
+      "command": "mongod",
+      "args": ["--version"],
+      "expectPattern": "db version",
+      "versionPattern": "db version v?([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "mongod",
+    "args": ["--version"],
+    "versionPattern": "db version v?([\\d.]+)",
+    "displayNamePattern": "MongoDB",
+    "serviceNamePattern": "MongoDB",
+    "knownPaths": ["{programFiles}\\MongoDB\\Server\\9.0\\bin"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

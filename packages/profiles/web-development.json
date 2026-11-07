@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "web-development",
+  "name": "Web Development",
+  "description": "Node.js, Git and optional Python for full-stack web development.",
+  "audience": "Web developers working across frontend and backend",
+  "icon": "react",
+  "notes": [
+    "React, Vue and other frontend frameworks are installed per project with npm.",
+    "Python is optional for backend scripting and tooling."
+  ],
+  "components": [
+    { "packageId": "nodejs", "optional": false },
+    { "packageId": "git", "optional": false },
+    { "packageId": "python", "optional": true }
+  ]
+}

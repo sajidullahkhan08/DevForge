@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "django",
+  "name": "Django",
+  "category": "framework",
+  "description": "Project-level Python web framework, installed into a per-project virtual environment.",
+  "longDescription": "Django is a Python framework that belongs inside individual projects, not on the operating system. DevForge treats it as a project recipe: it ensures a supported Python runtime is present and gives you the exact commands to create an isolated virtual environment and a new Django project.",
+  "publisher": "Django Software Foundation",
+  "homepage": "https://www.djangoproject.com/",
+  "documentationUrl": "https://docs.djangoproject.com/",
+  "license": "BSD-3-Clause",
+  "icon": "django",
+  "installationMethod": "project-recipe",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "Django is installed per project inside a virtual environment, not globally.",
+    "DevForge does not create or modify project files; it provides the verified setup commands."
+  ],
+  "tags": ["python", "web", "framework", "backend"],
+  "versions": [],
+  "dependencies": [
+    {
+      "packageId": "python",
+      "kind": "required",
+      "minVersion": "3.11",
+      "reason": "Django requires Python 3.11 or newer and is installed into a project virtual environment."
+    }
+  ],
+  "environment": [],
+  "verification": [],
+  "detection": {
+    "knownPaths": []
+  },
+  "projectRecipe": {
+    "summary": "Create a Python virtual environment and install Django inside it for this project only.",
+    "commands": [
+      {
+        "label": "Create and activate a virtual environment",
+        "command": "python -m venv .venv; .\\.venv\\Scripts\\Activate.ps1"
+      },
+      {
+        "label": "Install Django",
+        "command": "python -m pip install \"Django>=5.0\""
+      },
+      {
+        "label": "Start a new project",
+        "command": "django-admin startproject myproject ."
+      },
+      {
+        "label": "Run the development server",
+        "command": "python manage.py runserver"
+      }
+    ],
+    "notes": [
+      "Run these commands in your project folder, not in the DevForge tools directory.",
+      "Virtual environment activation may require adjusting the PowerShell execution policy for your user."
+    ]
+  }
+}

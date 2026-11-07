@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "rust",
+  "name": "Rust",
+  "category": "language",
+  "description": "Systems programming language with the rustup toolchain manager, cargo and rustc.",
+  "longDescription": "Rust is installed with rustup-init from the official rust-lang.org static host. DevForge verifies the SHA-256 checksum from the official WinGet manifest, runs rustup non-interactively, and adds %USERPROFILE%\\.cargo\\bin to your user PATH.",
+  "publisher": "Rust Project",
+  "homepage": "https://www.rust-lang.org/",
+  "documentationUrl": "https://doc.rust-lang.org/book/",
+  "license": "MIT OR Apache-2.0",
+  "icon": "rust",
+  "installationMethod": "official-installer",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "rustup downloads the stable MSVC toolchain from static.rust-lang.org after the installer runs; an internet connection is required.",
+    "Cargo and rustc are placed in %USERPROFILE%\\.cargo\\bin. DevForge does not modify the rustup-installed PATH entry itself."
+  ],
+  "tags": ["programming", "systems", "cargo", "rustc"],
+  "versions": [
+    {
+      "version": "1.29.2",
+      "channel": "stable",
+      "isDefault": true,
+      "download": {
+        "url": "https://static.rust-lang.org/rustup/archive/1.29.2/x86_64-pc-windows-msvc/rustup-init.exe",
+        "checksum": "00f139da614dced87d3c3d4121c43eebdac3c1bf8a5ee86b9d80dfd71c8d70fd",
+        "checksumAlgorithm": "sha256",
+        "sizeBytes": 10000000,
+        "stripRootFolder": false
+      },
+      "installArgs": [
+        "-y",
+        "--no-modify-path",
+        "--default-toolchain",
+        "stable",
+        "--profile",
+        "default"
+      ],
+      "estimatedSizeBytes": 350000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "path", "name": "PATH", "valueTemplate": "{userProfile}\\.cargo\\bin", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "rustc-version",
+      "label": "Rust compiler",
+      "kind": "command",
+      "command": "rustc",
+      "args": ["--version"],
+      "expectPattern": "rustc",
+      "versionPattern": "rustc\\s+([\\d.]+)"
+    },
+    {
+      "id": "cargo-version",
+      "label": "Cargo build tool",
+      "kind": "command",
+      "command": "cargo",
+      "args": ["--version"],
+      "expectPattern": "cargo",
+      "versionPattern": "cargo\\s+([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "rustc",
+    "args": ["--version"],
+    "versionPattern": "rustc\\s+([\\d.]+)",
+    "knownPaths": ["{userProfile}\\.cargo\\bin"]
+  },
+  "uninstall": {
+    "method": "command",
+    "command": "rustup",
+    "args": ["self", "uninstall", "-y"],
+    "keepData": false
+  }
+}

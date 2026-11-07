@@ -1,0 +1,52 @@
+appId: com.devforge.desktop
+productName: DevForge
+copyright: Copyright © 2026 Sajidullah Khan
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - out/**/*
+  - package.json
+  - '!**/*.map'
+
+extraResources:
+  - from: packages/registry
+    to: packages/registry
+    filter:
+      - '**/*.json'
+  - from: packages/profiles
+    to: packages/profiles
+    filter:
+      - '**/*.json'
+  - from: packages/identities.json
+    to: packages/identities.json
+  - from: build/icon.png
+    to: tray-icon.png
+
+asar: true
+npmRebuild: false
+electronDist: node_modules/electron/dist
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: build/icon.png
+  requestedExecutionLevel: asInvoker
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: DevForge
+  artifactName: DevForge-Setup-${version}.${ext}
+  uninstallDisplayName: DevForge
+
+artifactName: DevForge-${version}-${arch}.${ext}
+publish: null

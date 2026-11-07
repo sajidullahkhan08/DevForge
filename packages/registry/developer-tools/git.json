@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "git",
+  "name": "Git",
+  "category": "developer-tool",
+  "description": "Distributed version control system, including Git Bash and credential manager.",
+  "longDescription": "Git is the standard distributed version control system. DevForge installs the official Git for Windows package through WinGet and verifies the command-line client. The installer also provides Git Bash and the Git Credential Manager.",
+  "publisher": "Git for Windows",
+  "homepage": "https://git-scm.com/",
+  "documentationUrl": "https://git-scm.com/doc",
+  "license": "GPL-2.0-only",
+  "icon": "git",
+  "installationMethod": "winget",
+  "packageManagerId": "Git.Git",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "The installer runs with Git for Windows defaults, including Git Bash and the credential manager.",
+    "Windows will request administrator permission because Git installs for all users."
+  ],
+  "tags": ["git", "version-control", "scm", "cli"],
+  "versions": [
+    {
+      "version": "2.56.0.4",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "Git.Git",
+      "estimatedSizeBytes": 65000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\cmd", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "git-version",
+      "label": "Git command line",
+      "kind": "command",
+      "command": "git",
+      "args": ["--version"],
+      "expectPattern": "git version",
+      "versionPattern": "git version\\s+([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "git",
+    "args": ["--version"],
+    "versionPattern": "git version\\s+([\\d.]+)",
+    "displayNamePattern": "^Git$",
+    "knownPaths": ["{programFiles}\\Git\\cmd", "{programFiles}\\Git\\bin"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

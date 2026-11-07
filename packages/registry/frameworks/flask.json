@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "flask",
+  "name": "Flask",
+  "category": "framework",
+  "description": "Lightweight project-level Python web framework installed into a virtual environment.",
+  "longDescription": "Flask is a micro web framework for Python. It is installed inside each project's virtual environment rather than globally. DevForge treats it as a project recipe and ensures Python is available before you start.",
+  "publisher": "Pallets",
+  "homepage": "https://flask.palletsprojects.com/",
+  "documentationUrl": "https://flask.palletsprojects.com/en/stable/",
+  "license": "BSD-3-Clause",
+  "icon": "flask",
+  "installationMethod": "project-recipe",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "Flask is installed per project inside a virtual environment, not globally."
+  ],
+  "tags": ["python", "web", "framework", "api"],
+  "versions": [],
+  "dependencies": [
+    {
+      "packageId": "python",
+      "kind": "required",
+      "minVersion": "3.10",
+      "reason": "Flask runs on Python and is installed into a project virtual environment."
+    }
+  ],
+  "environment": [],
+  "verification": [],
+  "detection": {
+    "knownPaths": []
+  },
+  "projectRecipe": {
+    "summary": "Create an isolated Python environment and install Flask for this project.",
+    "commands": [
+      {
+        "label": "Create and activate a virtual environment",
+        "command": "python -m venv .venv; .\\.venv\\Scripts\\Activate.ps1"
+      },
+      {
+        "label": "Install Flask",
+        "command": "python -m pip install Flask"
+      },
+      {
+        "label": "Run a minimal application",
+        "command": "python -c \"from flask import Flask; app=Flask(__name__); app.run()\""
+      }
+    ],
+    "notes": ["Run these commands inside your own project folder."]
+  }
+}

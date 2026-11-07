@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "python",
+  "name": "Python",
+  "category": "language",
+  "description": "General-purpose programming language with a large ecosystem for scripting, data and web development.",
+  "longDescription": "Python is a high-level, interpreted programming language used for automation, data science, web backends and much more. DevForge installs the official CPython distribution through WinGet and configures your user PATH so the interpreter and pip are immediately usable in new terminals.",
+  "publisher": "Python Software Foundation",
+  "homepage": "https://www.python.org/",
+  "documentationUrl": "https://docs.python.org/3/",
+  "license": "PSF-2.0",
+  "icon": "python",
+  "installationMethod": "winget",
+  "packageManagerId": "Python.Python.3.13",
+  "scope": "user",
+  "supportedArchitectures": ["x64"],
+  "supportedWindowsVersions": ["10", "11"],
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "WinGet runs the official python.org installer. If a UAC prompt appears, approve it to continue.",
+    "DevForge adds the interpreter and Scripts directories to your user PATH; existing terminals must be restarted to see the change."
+  ],
+  "tags": ["programming", "scripting", "backend", "data", "pip"],
+  "versions": [
+    {
+      "version": "3.13.17",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "Python.Python.3.13",
+      "estimatedSizeBytes": 33000000
+    },
+    {
+      "version": "3.12.10",
+      "channel": "stable",
+      "isDefault": false,
+      "packageManagerId": "Python.Python.3.12",
+      "estimatedSizeBytes": 32000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}", "scope": "user" },
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\Scripts", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "python-version",
+      "label": "Python interpreter",
+      "kind": "command",
+      "command": "python",
+      "args": ["--version"],
+      "expectPattern": "Python 3\\.",
+      "versionPattern": "Python\\s+(\\d+\\.\\d+\\.\\d+)"
+    },
+    {
+      "id": "pip-version",
+      "label": "pip package manager",
+      "kind": "command",
+      "command": "pip",
+      "args": ["--version"],
+      "expectPattern": "pip\\s+\\d",
+      "versionPattern": "pip\\s+(\\d+\\.\\d+(?:\\.\\d+)?)"
+    }
+  ],
+  "detection": {
+    "command": "python",
+    "args": ["--version"],
+    "versionPattern": "Python\\s+(\\d+\\.\\d+\\.\\d+)",
+    "displayNamePattern": "^Python 3\\.",
+    "knownPaths": [
+      "{localAppData}\\Programs\\Python\\Python313",
+      "{localAppData}\\Programs\\Python\\Python312",
+      "{programFiles}\\Python313",
+      "{programFiles}\\Python312"
+    ]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

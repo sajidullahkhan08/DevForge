@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "mysql",
+  "name": "MySQL",
+  "category": "database",
+  "description": "Advanced open-source relational database server from Oracle.",
+  "longDescription": "MySQL Server is a widely used relational database. DevForge installs Oracle's official Windows MSI through WinGet and verifies the Windows service and client. Credential setup is your responsibility; DevForge never stores or logs database passwords.",
+  "publisher": "Oracle",
+  "homepage": "https://www.mysql.com/",
+  "documentationUrl": "https://dev.mysql.com/doc/",
+  "license": "GPL-2.0 (Community Edition)",
+  "icon": "mysql",
+  "installationMethod": "winget",
+  "packageManagerId": "Oracle.MySQL",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": true,
+  "caveats": [
+    "This is a database server. Installation requires administrator permission and Microsoft Visual C++ redistributables.",
+    "DevForge does not create, store or log database passwords. Rotate or configure the root account securely after installation.",
+    "MySQL is installed with the vendor's Developer preset via WinGet. Review the generated configuration before exposing the server to a network.",
+    "Uninstalling does not delete your data directory. Back up your databases before removing the server."
+  ],
+  "tags": ["database", "sql", "mysql", "relational", "oracle"],
+  "versions": [
+    {
+      "version": "8.4.9",
+      "channel": "lts",
+      "isDefault": true,
+      "packageManagerId": "Oracle.MySQL",
+      "estimatedSizeBytes": 450000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    {
+      "kind": "path",
+      "name": "PATH",
+      "valueTemplate": "{programFiles}\\MySQL\\MySQL Server 8.4\\bin",
+      "scope": "user"
+    }
+  ],
+  "verification": [
+    {
+      "id": "mysql-service",
+      "label": "MySQL service",
+      "kind": "service",
+      "serviceNamePattern": "^MySQL",
+      "expectPattern": "Running",
+      "optional": false
+    },
+    {
+      "id": "mysql-version",
+      "label": "MySQL client",
+      "kind": "command",
+      "command": "mysql",
+      "args": ["--version"],
+      "expectPattern": "Ver",
+      "versionPattern": "Ver\\s+([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "mysql",
+    "args": ["--version"],
+    "versionPattern": "Ver\\s+([\\d.]+)",
+    "displayNamePattern": "MySQL Server",
+    "serviceNamePattern": "^MySQL",
+    "knownPaths": ["{programFiles}\\MySQL\\MySQL Server 8.4\\bin"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

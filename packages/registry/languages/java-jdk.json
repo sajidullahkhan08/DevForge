@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "java-jdk",
+  "name": "Java JDK",
+  "category": "language",
+  "description": "Eclipse Temurin OpenJDK distribution with the Java compiler and runtime.",
+  "longDescription": "The Java Development Kit provides the compiler (javac) and runtime (java) needed for Java development. DevForge installs Eclipse Temurin through WinGet, then configures JAVA_HOME and adds the JDK bin directory to your user PATH.",
+  "publisher": "Eclipse Adoptium",
+  "homepage": "https://adoptium.net/",
+  "documentationUrl": "https://docs.oracle.com/en/java/javase/21/",
+  "license": "GPL-2.0 WITH Classpath-exception-2.0",
+  "icon": "openjdk",
+  "installationMethod": "winget",
+  "packageManagerId": "EclipseAdoptium.Temurin.21.JDK",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": false,
+  "supportsVersionSwitching": true,
+  "caveats": [
+    "The JDK MSI installs for all users, so Windows will request administrator permission.",
+    "Version switching updates JAVA_HOME and the JDK PATH entry. Applications already running keep their original environment."
+  ],
+  "tags": ["java", "jdk", "jvm", "backend", "jvm-tools"],
+  "versions": [
+    {
+      "version": "21.0.13.9",
+      "channel": "lts",
+      "isDefault": true,
+      "packageManagerId": "EclipseAdoptium.Temurin.21.JDK",
+      "estimatedSizeBytes": 190000000
+    },
+    {
+      "version": "17.0.21.9",
+      "channel": "lts",
+      "isDefault": false,
+      "packageManagerId": "EclipseAdoptium.Temurin.17.JDK",
+      "estimatedSizeBytes": 180000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "variable", "name": "JAVA_HOME", "valueTemplate": "{installDir}", "scope": "user" },
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\bin", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "java-version",
+      "label": "Java runtime",
+      "kind": "command",
+      "command": "java",
+      "args": ["-version"],
+      "expectPattern": "version",
+      "versionPattern": "version \"([^\"]+)\""
+    },
+    {
+      "id": "javac-version",
+      "label": "Java compiler",
+      "kind": "command",
+      "command": "javac",
+      "args": ["-version"],
+      "expectPattern": "javac",
+      "versionPattern": "javac\\s+([\\d._]+)"
+    }
+  ],
+  "detection": {
+    "command": "java",
+    "args": ["-version"],
+    "versionPattern": "version \"([^\"]+)\"",
+    "displayNamePattern": "Eclipse Temurin JDK",
+    "knownPaths": []
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "dotnet-sdk",
+  "name": ".NET SDK",
+  "category": "runtime",
+  "description": "Microsoft .NET SDK for building and running C#, F# and ASP.NET Core applications.",
+  "longDescription": "The .NET SDK includes the runtime, compiler and CLI for modern .NET development. DevForge installs the official Microsoft SDK through WinGet and verifies the dotnet command.",
+  "publisher": "Microsoft",
+  "homepage": "https://dotnet.microsoft.com/",
+  "documentationUrl": "https://learn.microsoft.com/en-us/dotnet/",
+  "license": "MIT",
+  "icon": "dotnet",
+  "installationMethod": "winget",
+  "packageManagerId": "Microsoft.DotNet.SDK.8",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "The SDK installs system-wide and Windows will request administrator permission.",
+    "Multiple SDK versions can coexist; `dotnet --version` reports the active SDK for the current directory."
+  ],
+  "tags": ["dotnet", "csharp", "fsharp", "aspnet", "runtime"],
+  "versions": [
+    {
+      "version": "8.0.427",
+      "channel": "lts",
+      "isDefault": true,
+      "packageManagerId": "Microsoft.DotNet.SDK.8",
+      "estimatedSizeBytes": 300000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [],
+  "verification": [
+    {
+      "id": "dotnet-version",
+      "label": ".NET SDK",
+      "kind": "command",
+      "command": "dotnet",
+      "args": ["--version"],
+      "expectPattern": "\\d+\\.\\d+\\.\\d+",
+      "versionPattern": "(\\d+\\.\\d+\\.\\d+)"
+    }
+  ],
+  "detection": {
+    "command": "dotnet",
+    "args": ["--version"],
+    "versionPattern": "(\\d+\\.\\d+\\.\\d+)",
+    "displayNamePattern": "Microsoft \\.NET SDK",
+    "knownPaths": ["{programFiles}\\dotnet"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "database-development",
+  "name": "Database Development",
+  "description": "PostgreSQL plus your choice of MySQL or MongoDB, with command-line clients.",
+  "audience": "Developers learning or working with databases",
+  "icon": "postgresql",
+  "notes": [
+    "Database servers require administrator permission and are marked advanced.",
+    "DevForge never creates or stores database credentials. Secure accounts immediately after installation.",
+    "Select at most one of MySQL and MongoDB unless you intentionally want both servers."
+  ],
+  "components": [
+    { "packageId": "postgresql", "optional": false },
+    { "packageId": "mysql", "optional": true },
+    { "packageId": "mongodb", "optional": true }
+  ]
+}

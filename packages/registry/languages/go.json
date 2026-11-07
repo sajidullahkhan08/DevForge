@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "go",
+  "name": "Go",
+  "category": "language",
+  "description": "Compiled, statically typed language from Google with a fast toolchain and standard library.",
+  "longDescription": "The Go toolchain is distributed as an official ZIP archive. DevForge downloads it from go.dev, verifies the published SHA-256 checksum, extracts it into the DevForge tools directory, sets GOROOT and adds its bin folder to PATH.",
+  "publisher": "Google",
+  "homepage": "https://go.dev/",
+  "documentationUrl": "https://go.dev/doc/",
+  "license": "BSD-3-Clause",
+  "icon": "go",
+  "installationMethod": "archive",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "supportsVersionSwitching": true,
+  "installDirectoryTemplate": "{toolsDir}\\Go\\{version}",
+  "expectedExecutables": ["bin\\go.exe"],
+  "caveats": [
+    "The official go.dev ZIP is verified against the SHA-256 checksum published by Google.",
+    "Each version is installed in its own directory; switching versions reorders the user PATH entry."
+  ],
+  "tags": ["programming", "golang", "compiled", "backend", "cli"],
+  "versions": [
+    {
+      "version": "1.27.3",
+      "channel": "stable",
+      "isDefault": true,
+      "download": {
+        "url": "https://go.dev/dl/go1.27.3.windows-amd64.zip",
+        "archiveType": "zip",
+        "checksum": "f26081f438319757f8a1b46d7d0b2c5ec7583d4038e485e0aa725cfde7885fff",
+        "checksumAlgorithm": "sha256",
+        "sizeBytes": 79010309,
+        "stripRootFolder": true
+      },
+      "estimatedSizeBytes": 260000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "variable", "name": "GOROOT", "valueTemplate": "{installDir}", "scope": "user" },
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\bin", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "go-version",
+      "label": "Go toolchain",
+      "kind": "command",
+      "command": "go",
+      "args": ["version"],
+      "expectPattern": "go version go",
+      "versionPattern": "go version go([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "go",
+    "args": ["version"],
+    "versionPattern": "go version go([\\d.]+)",
+    "knownPaths": ["{toolsDir}\\Go\\1.27.3\\bin"]
+  },
+  "uninstall": { "method": "directory", "keepData": true }
+}

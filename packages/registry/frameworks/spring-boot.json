@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "spring-boot",
+  "name": "Spring Boot",
+  "category": "framework",
+  "description": "Project-level Java framework for production-ready Spring applications.",
+  "longDescription": "Spring Boot applications are generated per project with the Spring Initializr and built with Maven or Gradle. DevForge treats Spring Boot as a project recipe and can prepare the required JDK and Maven toolchain.",
+  "publisher": "Broadcom / Spring",
+  "homepage": "https://spring.io/projects/spring-boot",
+  "documentationUrl": "https://docs.spring.io/spring-boot/",
+  "license": "Apache-2.0",
+  "icon": "springboot",
+  "installationMethod": "project-recipe",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "Spring Boot dependencies live inside each Maven/Gradle project, not on the operating system.",
+    "The Spring Initializr website can also generate the project if you prefer a graphical workflow."
+  ],
+  "tags": ["java", "spring", "backend", "web", "framework"],
+  "versions": [],
+  "dependencies": [
+    {
+      "packageId": "java-jdk",
+      "kind": "required",
+      "minVersion": "17",
+      "reason": "Modern Spring Boot releases require Java 17 or newer."
+    },
+    {
+      "packageId": "maven",
+      "kind": "optional",
+      "reason": "Maven is a common build tool for Spring Boot; Gradle is also supported."
+    }
+  ],
+  "environment": [],
+  "verification": [],
+  "detection": {
+    "knownPaths": []
+  },
+  "projectRecipe": {
+    "summary": "Generate a Spring Boot project with the Spring Initializr and run it with Maven.",
+    "commands": [
+      {
+        "label": "Download a Maven project from Spring Initializr",
+        "command": "curl.exe \"https://start.spring.io/starter.zip?type=maven-project&language=java&bootVersion=3.5.0&javaVersion=21\" -o demo.zip"
+      },
+      {
+        "label": "Extract and enter the project",
+        "command": "Expand-Archive demo.zip -DestinationPath demo; cd demo"
+      },
+      {
+        "label": "Run the application",
+        "command": "mvn spring-boot:run"
+      }
+    ],
+    "notes": [
+      "Check start.spring.io for the current supported Spring Boot version before generating a project.",
+      "Gradle projects are equally supported; choose Gradle on the Initializr if preferred."
+    ]
+  }
+}

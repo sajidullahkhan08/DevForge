@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "github-cli",
+  "name": "GitHub CLI",
+  "category": "developer-tool",
+  "description": "Official command-line client for GitHub: repositories, pull requests, issues and Actions.",
+  "longDescription": "The GitHub CLI (gh) brings GitHub workflows to the terminal. DevForge installs the official Windows MSI through WinGet and verifies the gh command. Git is recommended but not required to install gh.",
+  "publisher": "GitHub",
+  "homepage": "https://cli.github.com/",
+  "documentationUrl": "https://cli.github.com/manual/",
+  "license": "MIT",
+  "icon": "github",
+  "installationMethod": "winget",
+  "packageManagerId": "GitHub.cli",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "Windows will request administrator permission because the MSI installs for all users.",
+    "Run `gh auth login` after installation to authenticate. DevForge never asks for or stores GitHub credentials."
+  ],
+  "tags": ["github", "git", "cli", "ci"],
+  "versions": [
+    {
+      "version": "2.103.3",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "GitHub.cli",
+      "estimatedSizeBytes": 15000000
+    }
+  ],
+  "dependencies": [
+    {
+      "packageId": "git",
+      "kind": "optional",
+      "reason": "Git integration is more useful with Git installed, but gh works without it."
+    }
+  ],
+  "environment": [
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\bin", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "gh-version",
+      "label": "GitHub CLI",
+      "kind": "command",
+      "command": "gh",
+      "args": ["--version"],
+      "expectPattern": "gh version",
+      "versionPattern": "gh version\\s+([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "gh",
+    "args": ["--version"],
+    "versionPattern": "gh version\\s+([\\d.]+)",
+    "displayNamePattern": "GitHub CLI",
+    "knownPaths": ["{programFiles}\\GitHub CLI"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

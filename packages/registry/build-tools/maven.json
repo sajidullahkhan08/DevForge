@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "maven",
+  "name": "Apache Maven",
+  "category": "build-tool",
+  "description": "Build and dependency management tool for Java projects, installed from the official Apache archive.",
+  "longDescription": "Maven is distributed as an official ZIP archive by the Apache Software Foundation. DevForge downloads it from the Apache archive, verifies the published SHA-512 checksum, extracts it, sets MAVEN_HOME and adds bin to your user PATH. A JDK 17 or newer is required to run Maven.",
+  "publisher": "Apache Software Foundation",
+  "homepage": "https://maven.apache.org/",
+  "documentationUrl": "https://maven.apache.org/guides/",
+  "license": "Apache-2.0",
+  "icon": "apachemaven",
+  "installationMethod": "archive",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "supportsVersionSwitching": true,
+  "installDirectoryTemplate": "{toolsDir}\\Maven\\{version}",
+  "expectedExecutables": ["bin\\mvn.cmd", "bin\\mvn"],
+  "caveats": [
+    "Maven requires a JDK. DevForge will offer to install Eclipse Temurin 21 if no compatible JDK is detected.",
+    "The Apache archive is used so that pinned versions remain available after Apache rotates its main download mirror."
+  ],
+  "tags": ["java", "build", "maven", "dependency-management"],
+  "versions": [
+    {
+      "version": "3.9.9",
+      "channel": "stable",
+      "isDefault": true,
+      "download": {
+        "url": "https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip",
+        "archiveType": "zip",
+        "checksum": "8beac8d11ef208f1e2a8df0682b9448a9a363d2ad13ca74af43705549e72e74c9378823bf689287801cbbfc2f6ea9596201d19ccacfdfb682ee8a2ff4c4418ba",
+        "checksumAlgorithm": "sha512",
+        "stripRootFolder": true
+      },
+      "estimatedSizeBytes": 10000000
+    }
+  ],
+  "dependencies": [
+    {
+      "packageId": "java-jdk",
+      "kind": "required",
+      "minVersion": "17",
+      "reason": "Maven runs on the Java Virtual Machine and requires a JDK to execute."
+    }
+  ],
+  "environment": [
+    { "kind": "variable", "name": "MAVEN_HOME", "valueTemplate": "{installDir}", "scope": "user" },
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\bin", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "mvn-version",
+      "label": "Maven build tool",
+      "kind": "command",
+      "command": "mvn",
+      "args": ["--version"],
+      "expectPattern": "Apache Maven",
+      "versionPattern": "Apache Maven\\s+([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "mvn",
+    "args": ["--version"],
+    "versionPattern": "Apache Maven\\s+([\\d.]+)",
+    "knownPaths": ["{toolsDir}\\Maven\\3.9.9\\bin"]
+  },
+  "uninstall": { "method": "directory", "keepData": true }
+}

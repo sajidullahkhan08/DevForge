@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "python-development",
+  "name": "Python Development",
+  "description": "Python interpreter, pip and Git, ready for scripting, automation and Python web projects.",
+  "audience": "Beginners and developers starting with Python",
+  "icon": "python",
+  "notes": [
+    "pip is installed with Python, so no separate package is required.",
+    "Create a virtual environment per project with `python -m venv .venv`."
+  ],
+  "components": [
+    { "packageId": "python", "optional": false },
+    { "packageId": "git", "optional": false }
+  ]
+}

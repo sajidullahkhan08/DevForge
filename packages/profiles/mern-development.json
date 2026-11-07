@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "mern-development",
+  "name": "MERN Development",
+  "description": "MongoDB, Express-ready Node.js and React tooling with Git.",
+  "audience": "Full-stack JavaScript developers",
+  "icon": "mongodb",
+  "notes": [
+    "Express and React are project-level dependencies installed with npm, not global tools.",
+    "MongoDB Community Server is optional and marked advanced because it installs a Windows service.",
+    "MongoDB starts without authentication; enable it for anything beyond local development."
+  ],
+  "components": [
+    { "packageId": "nodejs", "optional": false },
+    { "packageId": "git", "optional": false },
+    { "packageId": "mongodb", "optional": true },
+    { "packageId": "react-vite", "optional": true }
+  ]
+}

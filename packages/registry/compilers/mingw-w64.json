@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "mingw-w64",
+  "name": "MinGW-w64 (GCC)",
+  "category": "compiler",
+  "description": "WinLibs GCC toolchain for building native C and C++ programs with MinGW-w64 and UCRT.",
+  "longDescription": "WinLibs packages a complete GCC toolchain for Windows. DevForge downloads the official release archive, verifies its SHA-256 checksum, extracts it to the DevForge tools directory and adds the bin folder to your user PATH. This is a GCC-based toolchain and is separate from Microsoft's MSVC compiler.",
+  "publisher": "Brecht Sanders / WinLibs",
+  "homepage": "https://winlibs.com/",
+  "documentationUrl": "https://gcc.gnu.org/onlinedocs/",
+  "license": "GPL-3.0-or-later WITH GCC-exception",
+  "icon": "gnu",
+  "installationMethod": "archive",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "supportsVersionSwitching": true,
+  "installDirectoryTemplate": "{toolsDir}\\MinGW\\{version}",
+  "expectedExecutables": ["bin\\gcc.exe", "bin\\g++.exe"],
+  "caveats": [
+    "This is the GCC-based MinGW-w64 toolchain. It does not include MSVC or the Windows SDK.",
+    "The download is large (roughly 150 MB) because it contains the full GCC toolchain."
+  ],
+  "tags": ["c", "c++", "gcc", "g++", "compiler", "mingw"],
+  "versions": [
+    {
+      "version": "16.2.0",
+      "channel": "stable",
+      "isDefault": true,
+      "download": {
+        "url": "https://github.com/brechtsanders/winlibs_mingw/releases/download/16.2.0posix-23.1.3-14.0.0-ucrt-r3/winlibs-x86_64-posix-seh-gcc-16.2.0-mingw-w64ucrt-14.0.0-r3.zip",
+        "archiveType": "zip",
+        "checksum": "3c69305081e4a647144339a936244fcf7d3d9e558319e1ad7be2cd2886d4b6a1",
+        "checksumAlgorithm": "sha256",
+        "stripRootFolder": true
+      },
+      "estimatedSizeBytes": 220000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\bin", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "gcc-version",
+      "label": "GCC C compiler",
+      "kind": "command",
+      "command": "gcc",
+      "args": ["--version"],
+      "expectPattern": "gcc",
+      "versionPattern": "(\\d+\\.\\d+\\.\\d+)"
+    },
+    {
+      "id": "gpp-version",
+      "label": "G++ C++ compiler",
+      "kind": "command",
+      "command": "g++",
+      "args": ["--version"],
+      "expectPattern": "g\\+\\+",
+      "versionPattern": "(\\d+\\.\\d+\\.\\d+)"
+    }
+  ],
+  "detection": {
+    "command": "gcc",
+    "args": ["--version"],
+    "versionPattern": "(\\d+\\.\\d+\\.\\d+)",
+    "knownPaths": ["{toolsDir}\\MinGW\\16.2.0\\bin"]
+  },
+  "uninstall": { "method": "directory", "keepData": true }
+}

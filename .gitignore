@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+dist/
+dist-*/
+release/
+release-*/
+build-output/
+*.tsbuildinfo
+
+# Test output
+coverage/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Local runtime data
+*.log
+logs/
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+.devforge/
+.tmp/
+*.tmp
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.p12
+
+# Tooling caches
+.vite/
+.eslintcache
+.cache/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json

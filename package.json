@@ -1,0 +1,79 @@
+{
+  "name": "devforge",
+  "version": "1.0.0",
+  "description": "DevForge - Automated development environment provisioning and management for Windows",
+  "main": "./out/main/index.js",
+  "author": {
+    "name": "Sajidullah Khan",
+    "email": "sajiidullahkhan0348@gmail.com"
+  },
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajidullahkhan08/DevForge.git"
+  },
+  "homepage": "https://github.com/sajidullahkhan08/DevForge#readme",
+  "bugs": {
+    "url": "https://github.com/sajidullahkhan08/DevForge/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "start": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "npm run build && playwright test",
+    "audit:prod": "npm audit --omit=dev --audit-level=high",
+    "sbom": "node scripts/generate-sbom.mjs",
+    "verify": "npm run typecheck && npm test && npm run build",
+    "package": "npm run build && electron-builder --win --x64",
+    "package:dir": "npm run build && electron-builder --win --x64 --dir",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "yauzl": "^3.4.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@radix-ui/react-dialog": "^1.3.1",
+    "@radix-ui/react-label": "^2.1.17",
+    "@radix-ui/react-scroll-area": "^1.4.0",
+    "@radix-ui/react-select": "^2.4.1",
+    "@radix-ui/react-slot": "^1.5.0",
+    "@radix-ui/react-switch": "^1.4.1",
+    "@radix-ui/react-tabs": "^1.2.1",
+    "@radix-ui/react-tooltip": "^1.4.1",
+    "@tanstack/react-query": "^5.105.3",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/yauzl": "^3.4.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "autoprefixer": "^10.6.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "electron": "^45.2.2",
+    "electron-builder": "^26.18.0",
+    "electron-vite": "^6.0.0",
+    "lucide-react": "^1.67.0",
+    "postcss": "^8.5.32",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5",
+    "recharts": "^3.10.1",
+    "simple-icons": "^16.36.0",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0",
+    "zustand": "^5.0.16"
+  }
+}

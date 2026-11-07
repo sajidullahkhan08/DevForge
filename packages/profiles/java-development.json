@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "java-development",
+  "name": "Java Development",
+  "description": "Eclipse Temurin JDK, Maven and Git with JAVA_HOME and PATH configured automatically.",
+  "audience": "Java and Spring Boot developers",
+  "icon": "openjdk",
+  "notes": [
+    "Maven depends on a JDK 17 or newer; DevForge resolves this dependency for you.",
+    "Gradle can be added later from the catalogue or used via the Gradle wrapper inside a project."
+  ],
+  "components": [
+    { "packageId": "java-jdk", "optional": false },
+    { "packageId": "maven", "optional": false },
+    { "packageId": "git", "optional": false }
+  ]
+}

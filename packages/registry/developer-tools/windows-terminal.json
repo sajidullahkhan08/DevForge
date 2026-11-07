@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "windows-terminal",
+  "name": "Windows Terminal",
+  "category": "developer-tool",
+  "description": "Modern terminal host with tabs, panes and profiles for PowerShell, cmd and WSL.",
+  "longDescription": "Windows Terminal is Microsoft's modern terminal application. DevForge installs it through WinGet. On Windows 11 it is usually already present, so DevForge will show it as detected and skip installation.",
+  "publisher": "Microsoft",
+  "homepage": "https://github.com/microsoft/terminal",
+  "documentationUrl": "https://learn.microsoft.com/en-us/windows/terminal/",
+  "license": "MIT",
+  "icon": "windowsterminal",
+  "installationMethod": "winget",
+  "packageManagerId": "Microsoft.WindowsTerminal",
+  "scope": "user",
+  "requiresAdmin": false,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "Windows Terminal is installed as a per-user MSIX package via WinGet.",
+    "This package has no command-line verification of its own; DevForge verifies its presence through WinGet metadata."
+  ],
+  "tags": ["terminal", "shell", "powershell", "wsl", "microsoft"],
+  "versions": [
+    {
+      "version": "1.25.2733.0",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "Microsoft.WindowsTerminal",
+      "estimatedSizeBytes": 25000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [],
+  "verification": [
+    {
+      "id": "wt-installed",
+      "label": "Windows Terminal package",
+      "kind": "winget",
+      "expectPattern": "Microsoft.WindowsTerminal",
+      "optional": false
+    },
+    {
+      "id": "wt-alias",
+      "label": "wt command alias",
+      "kind": "file",
+      "filePathTemplate": "{localAppData}\\Microsoft\\WindowsApps\\wt.exe",
+      "optional": true
+    }
+  ],
+  "detection": {
+    "displayNamePattern": "Windows Terminal",
+    "knownPaths": ["{localAppData}\\Microsoft\\WindowsApps"]
+  }
+}

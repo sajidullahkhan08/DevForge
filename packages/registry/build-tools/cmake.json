@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "cmake",
+  "name": "CMake",
+  "category": "build-tool",
+  "description": "Cross-platform build system generator for C and C++ projects.",
+  "longDescription": "CMake generates native build files for C and C++ projects. DevForge installs the official Kitware distribution through WinGet and verifies the command-line tool. A compiler such as MinGW-w64 or MSVC is still required to build code.",
+  "publisher": "Kitware",
+  "homepage": "https://cmake.org/",
+  "documentationUrl": "https://cmake.org/documentation/",
+  "license": "BSD-3-Clause",
+  "icon": "cmake",
+  "installationMethod": "winget",
+  "packageManagerId": "Kitware.CMake",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "CMake is a build system generator, not a compiler. Install MinGW-w64 or use Visual Studio's MSVC toolchain to compile code.",
+    "The MSI installs for all users, so Windows will request administrator permission."
+  ],
+  "tags": ["c", "c++", "build", "cmake", "mingw"],
+  "versions": [
+    {
+      "version": "4.4.4",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "Kitware.CMake",
+      "estimatedSizeBytes": 50000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}\\bin", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "cmake-version",
+      "label": "CMake command line",
+      "kind": "command",
+      "command": "cmake",
+      "args": ["--version"],
+      "expectPattern": "cmake version",
+      "versionPattern": "cmake version\\s+([\\d.]+)"
+    }
+  ],
+  "detection": {
+    "command": "cmake",
+    "args": ["--version"],
+    "versionPattern": "cmake version\\s+([\\d.]+)",
+    "displayNamePattern": "^CMake$",
+    "knownPaths": ["{programFiles}\\CMake\\bin"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

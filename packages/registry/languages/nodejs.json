@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "nodejs",
+  "name": "Node.js",
+  "category": "language",
+  "description": "JavaScript runtime built on V8, including npm, for server-side and tooling workloads.",
+  "longDescription": "Node.js runs JavaScript outside the browser and ships with npm. DevForge installs the official Node.js MSI through WinGet, then verifies both node and npm. The LTS release is the recommended default for production work.",
+  "publisher": "OpenJS Foundation",
+  "homepage": "https://nodejs.org/",
+  "documentationUrl": "https://nodejs.org/docs/latest/api/",
+  "license": "MIT",
+  "icon": "nodedotjs",
+  "installationMethod": "winget",
+  "packageManagerId": "OpenJS.NodeJS.LTS",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": false,
+  "advanced": false,
+  "caveats": [
+    "The official MSI installs for all users, so Windows will request administrator permission.",
+    "Open a new terminal after installation so PATH changes are picked up."
+  ],
+  "tags": ["javascript", "runtime", "npm", "backend", "frontend"],
+  "versions": [
+    {
+      "version": "26.13.0",
+      "channel": "lts",
+      "isDefault": true,
+      "packageManagerId": "OpenJS.NodeJS.LTS",
+      "estimatedSizeBytes": 32000000
+    },
+    {
+      "version": "22.23.4",
+      "channel": "stable",
+      "isDefault": false,
+      "packageManagerId": "OpenJS.NodeJS.22",
+      "estimatedSizeBytes": 30000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    { "kind": "path", "name": "PATH", "valueTemplate": "{installDir}", "scope": "user" }
+  ],
+  "verification": [
+    {
+      "id": "node-version",
+      "label": "Node.js runtime",
+      "kind": "command",
+      "command": "node",
+      "args": ["--version"],
+      "expectPattern": "^v?\\d+\\.",
+      "versionPattern": "v?(\\d+\\.\\d+\\.\\d+)"
+    },
+    {
+      "id": "npm-version",
+      "label": "npm package manager",
+      "kind": "command",
+      "command": "npm",
+      "args": ["--version"],
+      "expectPattern": "\\d+\\.\\d+",
+      "versionPattern": "(\\d+\\.\\d+\\.\\d+)"
+    }
+  ],
+  "detection": {
+    "command": "node",
+    "args": ["--version"],
+    "versionPattern": "v?(\\d+\\.\\d+\\.\\d+)",
+    "displayNamePattern": "Node\\.js",
+    "knownPaths": ["{programFiles}\\nodejs"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

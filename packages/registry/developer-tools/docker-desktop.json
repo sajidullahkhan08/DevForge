@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "docker-desktop",
+  "name": "Docker Desktop",
+  "category": "developer-tool",
+  "description": "Container development environment for Windows with Docker Engine, Compose and Kubernetes.",
+  "longDescription": "Docker Desktop provides containerized development on Windows. It is an advanced installation: it requires administrator permission, hardware virtualization, and usually WSL 2. A reboot and a Docker account sign-in are commonly required before containers can run.",
+  "publisher": "Docker Inc.",
+  "homepage": "https://www.docker.com/products/docker-desktop/",
+  "documentationUrl": "https://docs.docker.com/desktop/",
+  "license": "Proprietary (Docker Subscription Service Agreement)",
+  "icon": "docker",
+  "installationMethod": "winget",
+  "packageManagerId": "Docker.DockerDesktop",
+  "scope": "system",
+  "requiresAdmin": true,
+  "requiresRestart": true,
+  "advanced": true,
+  "caveats": [
+    "Docker Desktop requires WSL 2 or Hyper-V and hardware virtualization enabled in firmware.",
+    "A system restart and Docker account sign-in are typically required before Docker works.",
+    "DevForge only installs the package and verifies the CLI; it does not configure WSL, Hyper-V or your Docker account.",
+    "This is an advanced optional integration and should be treated separately from a basic development environment."
+  ],
+  "tags": ["containers", "docker", "wsl", "devops"],
+  "versions": [
+    {
+      "version": "4.98.0",
+      "channel": "stable",
+      "isDefault": true,
+      "packageManagerId": "Docker.DockerDesktop",
+      "estimatedSizeBytes": 650000000
+    }
+  ],
+  "dependencies": [],
+  "environment": [
+    {
+      "kind": "path",
+      "name": "PATH",
+      "valueTemplate": "{programFiles}\\Docker\\Docker\\resources\\bin",
+      "scope": "user"
+    }
+  ],
+  "verification": [
+    {
+      "id": "docker-cli",
+      "label": "Docker CLI",
+      "kind": "command",
+      "command": "docker",
+      "args": ["--version"],
+      "expectPattern": "Docker version",
+      "versionPattern": "Docker version\\s+([\\d.]+)",
+      "optional": false
+    },
+    {
+      "id": "docker-desktop-files",
+      "label": "Docker Desktop application",
+      "kind": "file",
+      "filePathTemplate": "{programFiles}\\Docker\\Docker\\Docker Desktop.exe",
+      "optional": false
+    }
+  ],
+  "detection": {
+    "displayNamePattern": "Docker Desktop",
+    "command": "docker",
+    "args": ["--version"],
+    "versionPattern": "Docker version\\s+([\\d.]+)",
+    "knownPaths": ["{programFiles}\\Docker\\Docker\\resources\\bin"]
+  },
+  "uninstall": { "method": "winget", "keepData": true }
+}

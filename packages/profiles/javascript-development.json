@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "javascript-development",
+  "name": "JavaScript Development",
+  "description": "Node.js LTS, npm and Git for frontend and backend JavaScript work.",
+  "audience": "Web and Node.js developers",
+  "icon": "nodedotjs",
+  "notes": ["Node.js LTS is selected by default for stability."],
+  "components": [
+    { "packageId": "nodejs", "optional": false },
+    { "packageId": "git", "optional": false }
+  ]
+}
