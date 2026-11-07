@@ -12,6 +12,7 @@ No more hunting through vendor websites. No more guessing which installer is cur
 
 <p align="center">
   <a href="https://github.com/sajidullahkhan08/DevForge/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/sajidullahkhan08/DevForge/actions/workflows/ci.yml/badge.svg" /></a>
+  <a href="https://github.com/sajidullahkhan08/DevForge/actions/workflows/release.yml"><img alt="Release pipeline" src="https://github.com/sajidullahkhan08/DevForge/actions/workflows/release.yml/badge.svg" /></a>
   <a href="https://github.com/sajidullahkhan08/DevForge/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/sajidullahkhan08/DevForge?label=release" /></a>
   <a href="LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-blue.svg" /></a>
   <img alt="Windows 10 and 11" src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D4" />
